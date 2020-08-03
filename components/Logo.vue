@@ -5,7 +5,8 @@
 <style>
 .mail-logo {
   animation: 1s appear;
-  margin: auto;
+	margin: auto;
+	width: 150px;
 }
 
 @keyframes appear {

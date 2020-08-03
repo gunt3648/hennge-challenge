@@ -1,7 +1,10 @@
 <template>
-  <div class="container">
-    <div class="row">
+  <div class="container column">
+    <div class="search-mb">
 			<SearchBar />
+		</div>
+		<div class="mail-hi">
+			<MailBox />
 		</div>
   </div>
 </template>
@@ -13,11 +16,11 @@ export default {};
 <style lang="scss">
 @import "~assets/css/global.scss";
 
-.title {
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.search-mb {
+	margin-bottom: 24px;
+}
+
+.mail-hi {
+	height: 100%;
 }
 </style>
