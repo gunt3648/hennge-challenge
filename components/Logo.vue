@@ -7,6 +7,8 @@
   animation: 1s appear;
 	margin: auto;
 	width: 150px;
+
+	pointer-events: none;
 }
 
 @keyframes appear {

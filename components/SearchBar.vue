@@ -2,48 +2,57 @@
   <div class="search-bar">
     <div class="range-input">
       <img class="icon" src="~/static/icon/icon_calender.svg" />
-      <input
-        type="text"
-        class="range-input-field"
-        v-model="dateRange.start"
-        @change="validDate(dateRange.start, true)"
-      />
+      <input type="text" class="range-input-field" v-model="date.start" />
       <span class="dash">-</span>
-      <input
-        type="text"
-        class="range-input-field"
-        v-model="dateRange.end"
-        @change="validDate(dateRange.start, false)"
-      />
+      <input type="text" class="range-input-field" v-model="date.end" />
     </div>
-    <div class="search-button">
+    <div class="search-button" @click="search(date)">
       <img class="icon" src="~/static/icon/icon_search.svg" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
-      dateRange: {
+      date: {
         start: "2020/1/1",
-        end: "2020/1/1",
-      },
-      dateValid: {
-        start: true,
-        end: true,
+        end: "2020/12/31",
       },
     };
   },
   methods: {
-    validDate: function (date, isStart) {
-      var re = new RegExp(
-        "^(((0?[1-9]|1[012])/(0?[1-9]|1d|2[0-8])|(0?[13456789]|1[012])/(29|30)|(0?[13578]|1[02])/31)/(19|[2-9]d)d{2}|0?2/29/((19|[2-9]d)(0[48]|[2468][048]|[13579][26])|(([2468][048]|[3579][26])00)))$"
+    search: async function (date) {
+			const stTemp = date.start.split("/");
+			const enTemp = date.end.split("/");
+			
+      if (this.validDate(date)) {
+        await this.$store.dispatch(
+          "mail/setDate",
+          {
+						start: new Date(stTemp[0], stTemp[1], stTemp[2]),
+						end: new Date(enTemp[0], enTemp[1], enTemp[2])
+					}
+        );
+        await this.$store.dispatch("mail/fetch");
+        await this.$store.dispatch("mail/sort", false);
+      } else console.error("Invalid date");
+    },
+    validDate: function (date) {
+      let re = new RegExp(
+        "^(?:20)[0-9]{2}[/]{1}(0?[1-9]|1[0-2])[/]([12][0-9]|3[01]|[1-9])$"
       );
 
-      if (isStart) this.dateValid.start = re.test(date);
-      else this.dateValid.end = re.test(date);
+      const stTemp = date.start.split("/");
+      const enTemp = date.end.split("/");
+
+      let stDate = new Date(stTemp[0], stTemp[1], stTemp[2]);
+      let enDate = new Date(enTemp[0], enTemp[1], enTemp[2]);
+
+      return re.test(date.start) && re.test(date.end) && enDate >= stDate;
     },
   },
 };
@@ -57,7 +66,8 @@ export default {
     .range-input-field {
       border: none;
       outline: 0;
-      max-width: 85px;
+      min-width: 85px;
+      max-width: 110px;
     }
 
     .range-input-field,
