@@ -24,9 +24,13 @@
           </td>
         </tr>
       </table>
-      <table class="mail-table-body">
-        <Mail v-for="mail in mailList" :key="mail.key" :mailData="mail" />
-      </table>
+      <div class="mail-table-wrapper">
+        <div class="mail-table-scroll">
+          <table class="mail-table-body">
+            <Mail v-for="mail in mailList" :key="mail.key" :mailData="mail" />
+          </table>
+        </div>
+      </div>
     </div>
 
     <div class="mail-box-empty" v-else>
@@ -75,6 +79,7 @@ export default {
   }
 
   .mail-box-body {
+    height: calc(100% - 42px);
     .mail-table-head,
     .mail-table-body {
       table-layout: fixed;
@@ -113,7 +118,7 @@ export default {
           width: 12%;
           font-weight: bold;
 
-					cursor: pointer;
+          cursor: pointer;
 
           .arrow {
             height: 12px;
@@ -144,6 +149,11 @@ export default {
         line-height: 18px;
         vertical-align: middle;
       }
+    }
+
+    .mail-table-wrapper {
+      height: calc(100% - 52px);
+      overflow: scroll;
     }
   }
 

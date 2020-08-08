@@ -21,6 +21,6 @@ export default {};
 }
 
 .mail-hi {
-	height: 100%;
+	height: calc(100% - 76px);
 }
 </style>
