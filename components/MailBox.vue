@@ -153,7 +153,7 @@ export default {
 
     .mail-table-wrapper {
       height: calc(100% - 52px);
-      overflow: scroll;
+      // overflow: scroll;
     }
   }
 
