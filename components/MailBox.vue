@@ -6,7 +6,7 @@
     </h3>
     <div class="mail-box-body" v-if="mailList && mailList.length > 0">
       <table class="mail-table-head">
-        <tr class="mail-table-row">
+        <tr class="mail-table-row hide-mobile">
           <td class="mail-table-from">From</td>
           <td class="mail-table-to">To</td>
           <td class="mail-table-addto"></td>
@@ -20,6 +20,26 @@
                 src="~/static/icon/icon_arrow01.svg"
                 :style="{ transform: isAsc ? 'rotate(180deg)' : '' }"
               />
+            </span>
+          </td>
+        </tr>
+        <tr class="mail-table-row hide-desktop">
+          <td>
+            <span>From</span>
+						<span>|</span>
+            <span>To</span>
+						<span>|</span>
+            <span>Subject</span>
+						<span>|</span>
+            <span @click="reorder()">
+              Date
+              <span>
+                <img
+                  class="arrow"
+                  src="~/static/icon/icon_arrow01.svg"
+                  :style="{ transform: isAsc ? 'rotate(180deg)' : '' }"
+                />
+              </span>
             </span>
           </td>
         </tr>
@@ -153,7 +173,7 @@ export default {
 
     .mail-table-wrapper {
       height: calc(100% - 52px);
-      overflow: scroll;
+      // overflow: scroll;
     }
   }
 
@@ -170,6 +190,46 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .mail-box {
+    .mail-box-head {
+      font-size: 14px;
+      margin-bottom: 10px;
+
+      span {
+        font-size: 18px;
+      }
+    }
+
+    .mail-box-body {
+      height: auto;
+
+      .mail-table-head,
+      .mail-table-body {
+        .mail-table-row {
+					font-size: 14px;
+					
+					span, .arrow {
+						line-height: 14px;
+						vertical-align: middle;
+					}
+
+					.arrow {
+						width: 8px;
+						height: 10px;
+
+						margin-top: -3px;
+					}
+        }
+      }
+		}
+		
+		.mail-box-empty {
+			height: 75vh;
+		}
   }
 }
 </style>

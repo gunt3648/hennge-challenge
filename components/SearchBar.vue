@@ -119,4 +119,46 @@ export default {
     vertical-align: middle;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .search-bar {
+    .range-input {
+      .range-input-field {
+        min-width: 75px;
+        max-width: 90px;
+      }
+
+      .range-input-field,
+      .dash {
+        font-size: 16px;
+      }
+
+      height: 100%;
+      width: 245px;
+      padding: 8px 12px;
+    }
+
+    .search-button {
+      display: inline-block;
+
+      height: 100%;
+			padding: 8px 11px;
+			padding-bottom: 9px;
+      margin-left: -25px;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 3px;
+    }
+
+    .range-input-field,
+    .dash,
+    .icon {
+      line-height: 20px;
+      vertical-align: middle;
+    }
+  }
+}
 </style>>
