@@ -9,7 +9,10 @@
         v-if="mailData.to.length > 1"
       >{{ `+${mailData.to.length - 1}` }}</span>
     </td>
-    <td class="mail-table-subject">{{ mailData.subject }}</td>
+    <td class="mail-table-subject">
+      <div class="subject">{{ mailData.subject }}</div>
+      <div class="content">{{ mailData.content }}</div>
+    </td>
     <td class="mail-table-attach">
       <img
         class="clip"
@@ -93,6 +96,18 @@ export default {
       color: white;
 
       border-radius: 5px;
+    }
+  }
+
+  .mail-table-subject {
+    .content {
+			margin-top: 4px;
+      font-size: 14px;
+      font-weight: 400;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
