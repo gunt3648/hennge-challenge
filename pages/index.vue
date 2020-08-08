@@ -23,4 +23,14 @@ export default {};
 .mail-hi {
 	height: calc(100% - 76px);
 }
+
+@media only screen and (max-width: 768px) {
+	.search-mb {
+		margin-bottom: 16px;
+	}
+
+	.mail-hi {
+		height: auto;
+	}
+}
 </style>
